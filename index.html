@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卡兹卡兹鸡排堡 VS 板烧鸡腿堡</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f8f8;
+            padding: 50px;
+        }
+        .battle-container {
+            margin: 20px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 20px;
+        }
+        .image-box {
+            width: 150px;
+            height: 150px;
+            border: 2px dashed #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .battle-text {
+            font-size: 20px;
+            margin: 20px;
+            color: #333;
+        }
+        .winner {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>卡兹卡兹鸡排堡 VS 板烧鸡腿堡</h1>
+    <div class="image-container">
+        <div class="image-box">
+            <img src="https://mjj.today/i/9HZLBw" alt="卡兹卡兹鸡排堡">
+        </div>
+        <div class="image-box">
+            <img src="https://mjj.today/i/9HZ0bl" alt="板烧鸡腿堡">
+        </div>
+    </div>
+    <div class="battle-container">
+        <p id="status" class="battle-text">点击下方按钮开始决斗</p>
+        <button id="startBattle">开始决斗</button>
+    </div>
+    <script>
+        document.getElementById("startBattle").addEventListener("click", function () {
+            let statusText = document.getElementById("status");
+            let startButton = document.getElementById("startBattle");
+            startButton.disabled = true;
+            
+            let messages = [
+                "双方紧张对峙...",
+                "火花四溅...",
+                "混战激烈...",
+                "劲爆对决..."
+            ];
+            
+            let count = 0;
+            let interval = setInterval(() => {
+                statusText.textContent = messages[Math.floor(Math.random() * messages.length)];
+                count++;
+                if (count >= 4) {
+                    clearInterval(interval);
+                    statusText.innerHTML = '<span class="winner">卡兹卡兹鸡排堡 胜利！</span>';
+                    startButton.disabled = false;
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
